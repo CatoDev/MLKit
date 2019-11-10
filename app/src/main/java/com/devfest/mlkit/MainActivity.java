@@ -1,5 +1,6 @@
 package com.devfest.mlkit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -51,7 +52,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        createCameraSource(selectedModel);
+        startCameraSource();
+    }
 
     private boolean allPermissionsGranted() {
         for (String permission : getRequiredPermissions()) {
